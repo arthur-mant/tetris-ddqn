@@ -14,6 +14,10 @@ class Rewards:
             #no 1500 se chega no final
             self.rew_exp += 1
 
+    
+    def set_rew_exp(self, x):
+        self.rew_exp = x
+
     def reward(self, l):
         return pow(l, self.rew_exp)/pow(4, self.rew_exp)
     def penalty(self, h):
