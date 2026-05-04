@@ -1,6 +1,6 @@
 This repository implements a Tetris playing agent based on Double Deep Q-Learning. It provides 2 main contributions: the utilization of post-states to reduce the size of the domain of the quality function, and a variable reward function, that changes through the training to force the agent to use more efficient strategies.
 
-#Training
+# Training
 
 To train a new network, run:
 
@@ -14,14 +14,14 @@ Where `"network_file"` is the file that contains the weights of the chosen netwo
 
 The trained network's filename is defined on `main.py`, and will be saved on the `saved_nns/` directory. The graphs generated during training will have the same filename, concatenated with the graph's subject, and will be saved on the `graphs/` directory.
 
-#Testing
+# Testing
 To test a network, run:
 
 `python gameplay.py "network_file"`
 
 This will make the agent a number of games and will return it's stats. If you wish to see the agent playing, include the flag `-s`, which will open an GUI showing every move made.
 
-#Avaliable trained networks
+# Avaliable trained networks
 
 There are 4 trained networks, each of them has a different implementation of the reward function:
 
