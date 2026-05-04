@@ -1,26 +1,37 @@
-Este repositório implementa um jogador de Tetris baseado em deep Q-learning
+This repository implements a Tetris playing agent based on Double Deep Q-Learning. It provides 2 main contributions: the utilization of post-states to reduce the size of the domain of the quality function, and a variable reward function, that changes through the training to force the agent to use more efficient strategies.
 
-Para treinar uma nova rede, basta executar:
+#Training
 
-python main.py -n
+To train a new network, run:
 
-Caso se opte por continuar o treinamento a partir de uma rede já treinada, basta executar (atualmente não implementado propriamente):
+`python main.py -n`
 
-python main.py "rede"
+In case you wish to use an already trained network as the basis for training, run (DEPRECATED)
 
-Para testar as redes já treinadas, basta executar:
+`python main.py "network_file"`
 
-python gameplay.py "rede"
+Where `"network_file"` is the file that contains the weights of the chosen network
 
-Onde "rede" é o arquivo de pesos da rede neural, com as já treinadas estando no diretório trained\_nns
-Para visualizar o agente jogando, basta adicionar a flag -s
+The trained network's filename is defined on `main.py`, and will be saved on the `saved_nns/` directory. The graphs generated during training will have the same filename, concatenated with the graph's subject, and will be saved on the `graphs/` directory.
 
-Há 4 diferentes redes, com cada uma sendo treinada utilizando uma função de recompensa diferente. Cada uma deve ser utilizada somente na sua respectiva branch:
+#Testing
+To test a network, run:
 
-A branch main (e a branch original-continuous, da qual a main é uma cópia) se refere ao agente treinado com uma função de recompensa variável que se altera de forma contínua, com a sua rede neural treinada sendo chamada de "continuous.h5"
+`python gameplay.py "network_file"`
 
-A branch original-discrete se refere ao agente treinado com uma função de recompensa variável que se altera de forma discreta, com sua rede neural sendo chamada de "discret.h5"
+This will make the agent a number of games and will return it's stats. If you wish to see the agent playing, include the flag `-s`, which will open an GUI showing every move made.
 
-A branch test-original se refere ao agente treinado com uma função de recompensa fixa, com sua rede neural sendo chamada de "fixo.h5"
+#Avaliable trained networks
 
-A branch score-real se refere ao agente treinado com a função de recompensa igual à pontuação do jogo (normalizada), com sua rede neural sendo chamada de "real.h5"
+There are 4 trained networks, each of them has a different implementation of the reward function:
+
+- The `main` branch (and the `original-continuous` branch, from which the main branch is a copy of) implements a variable reward function that changes continuously. This is the best performing agent and, therefore, was chosen as the main one. The file containing the trained network is `trained_nns/continuous.h5`.
+
+
+- The `original-discrete` branch implements a variable reward function that changes discretely. The file containing the trained network is `trained_nns/discrete.h5`.
+
+
+- The `test-original` branch implements a fixed reward function. The file containing the trained network is `trained_nns/fixo.h5`.
+
+- The `score-real` branch implements a reward function directly derived from the game's scoring system, not using our proposed reward function. The file containing the trained network is `trained_nns/real.h5`.
+
