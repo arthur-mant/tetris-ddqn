@@ -24,8 +24,8 @@ class GameRun:
 
     def run_game(self, route):
         self.screen_i.update_screen(self.game)
-        #time.sleep(0.02)
+        time.sleep(0.01)
         for elem in route:
             self.run_frame(elem)
-            #time.sleep(0.02)
+            time.sleep(0.01)
         return self.game.freeze()
