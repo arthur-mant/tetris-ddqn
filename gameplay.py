@@ -8,6 +8,7 @@ import numpy as np
 import cnn
 import time
 import pickle
+import random
 
 if len(sys.argv) <= 1:
     print("please inform neural network weights file")
@@ -35,7 +36,7 @@ p1 = player.player(model, 0, 0, False, rewards_object, nn_name, 0.99)
 
 #jogando os jogos
 
-n_games = 1000
+n_games = 10000
 max_plays = 100000
 
 #lines = [4*[0] for i in range(n_games)]
@@ -47,6 +48,7 @@ game_data = []
 print("max game length: ", max_plays)
 
 for i in range(n_games):
+    random.seed(i)
     game = tetris_interface.Tetris()
     if use_screen:
         game_exec = exec_game.GameRun(game)
