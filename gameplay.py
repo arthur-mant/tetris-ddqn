@@ -7,6 +7,7 @@ import numpy as np
 import cnn
 import time
 import pickle
+import random
 
 if len(sys.argv) <= 1:
     print("please inform neural network weights file")
@@ -47,6 +48,7 @@ game_data = []
 print("max game length: ", max_plays)
 
 for i in range(n_games):
+    random.seed(i)
     game = tetris_interface.Tetris()
     if use_screen:
         game_exec = exec_game.GameRun(game)
